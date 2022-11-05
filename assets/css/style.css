@@ -174,6 +174,7 @@ a.register-btn-nav:hover {
     overflow: hidden;
     top: 5px;
 }
+
 .overlay-menu ul li a:after {
     content: "";
     position: absolute;
@@ -185,6 +186,7 @@ a.register-btn-nav:hover {
     bottom: 0;
     transition: 0.35s ease;
 }
+
 .overlay-menu ul li a:hover:after, .overlay-menu ul li a:focus:after, .overlay-menu ul li a:active:after {
     width: 100%;
 }
@@ -199,21 +201,26 @@ a.register-btn-nav:hover {
     z-index: 100;
     transition: opacity 0.25s ease;
 }
+
 .button_container:hover {
     opacity: 0.7;
 }
+
 .button_container.active .top {
     transform: translateY(11px) translateX(0) rotate(45deg);
     background: #FFF;
 }
+
 .button_container.active .middle {
     opacity: 0;
     background: #FFF;
 }
+
 .button_container.active .bottom {
     transform: translateY(-11px) translateX(0) rotate(-45deg);
     background: #FFF;
 }
+
 .button_container span {
     background: #FFF;
     border: none;
@@ -225,9 +232,11 @@ a.register-btn-nav:hover {
     transition: all 0.35s ease;
     cursor: pointer;
 }
+
 .button_container span:nth-of-type(2) {
     top: 11px;
 }
+
 .button_container span:nth-of-type(3) {
     top: 22px;
 }
@@ -244,11 +253,13 @@ a.register-btn-nav:hover {
     transition: opacity 0.35s, visibility 0.35s, height 0.35s;
     overflow: hidden;
 }
+
 .overlay.open {
     opacity: 0.9;
     visibility: visible;
     height: 100%;
 }
+
 .overlay.open li {
     display: block;
     -webkit-animation: fadeInRight 0.5s ease forwards;
@@ -256,18 +267,22 @@ a.register-btn-nav:hover {
     -webkit-animation-delay: 0.35s;
     animation-delay: 0.35s;
 }
+
 .overlay.open li:nth-of-type(2) {
     -webkit-animation-delay: 0.4s;
     animation-delay: 0.4s;
 }
+
 .overlay.open li:nth-of-type(3) {
     -webkit-animation-delay: 0.45s;
     animation-delay: 0.45s;
 }
+
 .overlay.open li:nth-of-type(4) {
     -webkit-animation-delay: 0.5s;
     animation-delay: 0.5s;
 }
+
 .overlay nav.overlay-menu {
     position: relative;
     height: 70%;
@@ -277,6 +292,7 @@ a.register-btn-nav:hover {
     font-weight: 400;
     text-align: center;
 }
+
 .overlay ul {
     list-style: none;
     padding: 0;
@@ -285,6 +301,7 @@ a.register-btn-nav:hover {
     position: relative;
     height: 100%;
 }
+
 .overlay ul li {
     display: block;
     height: 25%;
@@ -293,6 +310,7 @@ a.register-btn-nav:hover {
     position: relative;
     opacity: 0;
 }
+
 .overlay ul li a {
     display: block;
     position: relative;
@@ -300,9 +318,11 @@ a.register-btn-nav:hover {
     text-decoration: none;
     overflow: hidden;
 }
+
 .overlay ul li a:hover:after, .overlay ul li a:focus:after, .overlay ul li a:active:after {
     width: 100%;
 }
+
 .overlay ul li a:after {
     content: "";
     position: absolute;
@@ -336,6 +356,7 @@ a.register-btn-nav:hover {
         left: 0;
     }
 }
+
 /*****************************
  HOME SECTION - CANVAS + INTRO
 ******************************/
@@ -510,6 +531,7 @@ i.fa-chevron-down {
     position: relative;
     min-width: 330px;
 }
+
 #todo .add-todo {
     min-width: 330px;
     margin: 30px;
@@ -518,6 +540,7 @@ i.fa-chevron-down {
     display: flex;
     box-shadow: 0 0 30px -10px rgba(0, 0, 0, 0.3);
 }
+
 #todo .add-todo input[type=text] {
     width: 90%;
     padding: 0 0 10px 0;
@@ -526,6 +549,7 @@ i.fa-chevron-down {
     border-bottom: 1px solid black;
     outline: none;
 }
+
 #todo .add-todo input[type=submit] {
     font-size: 19px;
     width: 10%;
@@ -535,6 +559,7 @@ i.fa-chevron-down {
     cursor: pointer;
     outline: none;
 }
+
 #todo .add-todo input[type=submit]:focus, #todo .add-todo input[type=submit]:hover {
     background: #bbceff;
 }
@@ -543,6 +568,7 @@ ul.todo-list {
     margin: 0;
     padding: 0 0 0 0;
 }
+
 ul.todo-list li {
     transition: box-shadow 0.2s ease;
     list-style: none;
@@ -551,12 +577,15 @@ ul.todo-list li {
     word-break: break-word;
     margin: 30px 30px 0;
 }
+
 ul.todo-list li:hover {
     box-shadow: 0 2px 15px -5px black;
 }
+
 ul.todo-list li input[type=checkbox] {
     display: none;
 }
+
 ul.todo-list li label {
     position: relative;
     display: block;
@@ -565,6 +594,7 @@ ul.todo-list li label {
     display: flex;
     justify-content: space-between;
 }
+
 ul.todo-list li label span {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
@@ -577,9 +607,11 @@ ul.todo-list li label span {
     height: 20px;
     color: #ffffff;
 }
+
 ul.todo-list li label span:hover {
     background: red;
 }
+
 ul.todo-list li input[type=checkbox]:checked + label {
     text-decoration: line-through;
     background: #313131;
@@ -590,6 +622,7 @@ ul.todo-list li input[type=checkbox]:checked + label {
     margin: 30px 30px 130px 30px;
     cursor: pointer;
 }
+
 .remove-List.hidden {
     display: none;
 }
@@ -614,6 +647,7 @@ MEDIA QUERY
         display: inline;
     }
 }
+
 @media only screen and (max-width: 1280px) {
     .button_container {
         display: block;
@@ -623,6 +657,7 @@ MEDIA QUERY
         display: none;
     }
 }
+
 /*****************************
  CSS3 ANIMATIONS
 ******************************/
@@ -644,6 +679,7 @@ MEDIA QUERY
         top: 32px;
     }
 }
+
 @keyframes fadeInDown {
     0% {
         opacity: 0;

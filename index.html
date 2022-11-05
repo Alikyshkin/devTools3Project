@@ -7,20 +7,36 @@
     <meta name="description" content="ToDo list">
     <meta name="keywords" content="todo, website">
     <title>To-Do list</title>
-    <script src="assets/js/speedTest.js"></script>
-    <link rel="stylesheet" href="assets/css/animate.css">
+
+    <!-- Page load time calculation -->
+    <script>
+        (() => {
+            let start = Date.now();
+            window.addEventListener("load", () => {
+                let end = Date.now();
+                let milliseconds = end - start
+                let seconds = milliseconds / 1000;
+                document.getElementById("loadTime").innerText = `${seconds} s`;
+            });
+        })();
+    </script>
+
+    <!-- css libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <!-- [Fonts connection] -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Fonts connection -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
+
+    <!--  Custom style  -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -173,30 +189,9 @@
 
 <!-- [end page] -->
 
-
-<!-- [Script stiky menu ] -->
-<script type="text/javascript">
-    window.addEventListener("scroll", function () {
-        if (window.pageYOffset > 50) {
-            document.getElementById("main-nav").className = "scrolling";
-        } else {
-            document.getElementById("main-nav").className = "";
-        }
-    })
-
-</script>
-
-<!-- [scrolling page] -->
+<!-- ls libraries -->
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/js/smooth-scroll.polyfills.min.js"></script>
-<script type='text/javascript'>
-    var scroll = new SmoothScroll('a[href*="#"]', {
-        speed: 500,
-        speedAsDuration: true
-    });
-</script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="assets/js/script.js"></script>
-<script src="assets/js/toDoForm.js"></script>
 </body>
 </html>

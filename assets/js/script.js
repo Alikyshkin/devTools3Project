@@ -1,5 +1,5 @@
 var MyModule;
-$(function() {
+$(function () {
 
     //generate random int a<=x<=b
     function randint(a, b) {
@@ -49,14 +49,14 @@ $(function() {
     };
 
     /*** Class that handles animation size. */
-    var MyAnimationSize = (function() {
+    var MyAnimationSize = (function () {
         /*** constructor */
         function MyAnimationSize() {
             this.setSize(0, 0);
         }
 
         /*** Updates the available size */
-        MyAnimationSize.prototype.setSize = function(w, h) {
+        MyAnimationSize.prototype.setSize = function (w, h) {
             var winSizeMlt = Math.min(w / 1980, h / 1200);
             this.width = w;
             this.height = h;
@@ -69,7 +69,7 @@ $(function() {
     })();
 
     /*** Class that handles an animation layer (geometry + canvas). */
-    var MyAnimationLayer = (function() {
+    var MyAnimationLayer = (function () {
 
         /*** constructor */
         function MyAnimationLayer(sizeConfig, isBackground) {
@@ -84,7 +84,7 @@ $(function() {
         }
 
         /*** Initializes a circle. */
-        MyAnimationLayer.prototype.resetCircle = function(a) {
+        MyAnimationLayer.prototype.resetCircle = function (a) {
             var isBg = this.isBackground,
                 width = this.sizeConfig.width,
                 height = this.sizeConfig.height;
@@ -105,7 +105,7 @@ $(function() {
         };
 
         /*** Geometry update. */
-        MyAnimationLayer.prototype.update = function() {
+        MyAnimationLayer.prototype.update = function () {
             var a, circles = this.circles,
                 isBg = this.isBackground,
                 sizeConfig = this.sizeConfig,
@@ -141,7 +141,7 @@ $(function() {
         };
 
         /*** Renders this layer to the 2D context. */
-        MyAnimationLayer.prototype.render = function(ctx) {
+        MyAnimationLayer.prototype.render = function (ctx) {
             var i, circles = this.circles,
                 isBg = this.isBackground;
             var offSet = isBg ? -2 * this.sizeConfig.width : 0;
@@ -214,7 +214,7 @@ $(function() {
     })();
 
     /*** The main canvas animation class. Handles the canvas context, resize and rendering. */
-    var MyAnimation = (function() {
+    var MyAnimation = (function () {
 
         /*** constructor */
         function MyAnimation(sizeConfig, elementId) {
@@ -228,12 +228,12 @@ $(function() {
         }
 
         /*** Gets the HTML Canvas element for this animation. */
-        MyAnimation.prototype.getElement = function() {
+        MyAnimation.prototype.getElement = function () {
             return (document.getElementById ? (document.getElementById(this.elementId)) : null);
         };
 
         /*** Tries to load the 2D canvas context. */
-        MyAnimation.prototype.loadContext = function() {
+        MyAnimation.prototype.loadContext = function () {
             var e = this.getElement();
             if (e && e.getContext) {
                 var ctx = e.getContext("2d");
@@ -246,7 +246,7 @@ $(function() {
         };
 
         /*** Called to resize the canvas. */
-        MyAnimation.prototype.setSize = function(w, h) {
+        MyAnimation.prototype.setSize = function (w, h) {
             this.sizeConfig.setSize(w, h);
             var e = this.getElement();
             if (e) {
@@ -258,13 +258,13 @@ $(function() {
         };
 
         /*** Updates geometry. */
-        MyAnimation.prototype.update = function(time) {
+        MyAnimation.prototype.update = function (time) {
             this.bgLayer.update();
             this.fgLayer.update();
         };
 
         /*** Renders the animation. */
-        MyAnimation.prototype.render = function() {
+        MyAnimation.prototype.render = function () {
             var ctx = this.context,
                 w2 = this.sizeConfig.width / 2,
                 h2 = this.sizeConfig.height / 2;
@@ -358,7 +358,7 @@ $(function() {
 
     if (myAnimation.loadContext()) {
         // Starts the canvas animation
-        limitLoop(function(time) {
+        limitLoop(function (time) {
             myAnimation.update(time);
             myAnimation.render();
             return true;
@@ -367,8 +367,117 @@ $(function() {
 
 });
 
-$('#toggle').click(function() {
+$('#toggle').click(function () {
     $(this).toggleClass('active');
     console.log($('#toggle').attr('class'));
     $('#overlay').toggleClass('open');
+});
+
+// To-Do FORM
+const todoList = document.querySelector('.todo-list');
+const todoForm = document.querySelector('.add-todo');
+const removeList = document.querySelector('.remove-List');
+
+let items = JSON.parse(localStorage.getItem('todoList')) || [
+    {
+        title: 'Task1',
+        done: false
+    },
+    {
+        title: 'Task2',
+        done: true
+    }
+];
+
+function addTodo(e) {
+    e.preventDefault();
+    const title = (this.querySelector('[name=item]')).value;
+    const todo = {
+        title,
+        done: false
+    };
+    items.push(todo);
+    saveTodos();
+    this.reset();
+}
+
+function createList(list = [], listTarget) {
+    listTarget.innerHTML = list.map((item, i) => {
+        return `<li>
+      <input type="checkbox" id="todo${i}" data-index="${i}"
+             ${item.done ? 'checked' : ''} />
+      <label for="todo${i}">${item.title}
+				<span data-index="${i}">X</span>
+			</label>
+    </li>`
+    }).join('');
+}
+
+function toggleDone(e) {
+    if (!e.target.matches('input')) return;
+    const el = e.target;
+    const index = el.dataset.index;
+    items[index].done = !items[index].done;
+    saveTodos();
+}
+
+function removeSingle(e) {
+    if (!e.target.matches('span')) return;
+    const el = e.target;
+    const index = el.dataset.index;
+    items.splice(index, 1);
+    saveTodos();
+    if (items.length === 0) {
+        removeList.classList.add('hidden');
+    }
+}
+
+function saveTodos() {
+    localStorage.setItem('todoList', JSON.stringify(items));
+    createList(items, todoList);
+    showRemoveButton();
+}
+
+function removeData() {
+    items = [];
+    localStorage.removeItem('todoList');
+    createList(items, todoList);
+    removeList.classList.add('hidden');
+}
+
+function showRemoveButton() {
+    if (items.length > 1) return;
+    removeList.classList.remove('hidden');
+}
+
+if (todoList) {
+    todoList.addEventListener('click', toggleDone);
+    todoList.addEventListener('click', removeSingle);
+}
+
+if (todoForm) {
+    todoForm.addEventListener('submit', addTodo);
+}
+
+if (removeList) {
+    removeList.addEventListener('click', removeData);
+}
+
+
+createList(items, todoList);
+
+//Sticky Menu
+window.addEventListener("scroll", function () {
+    if (window.pageYOffset > 50) {
+        document.getElementById("main-nav").className = "scrolling";
+    } else {
+        document.getElementById("main-nav").className = "";
+    }
+})
+
+// Scrolling page
+
+var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 500,
+    speedAsDuration: true
 });
